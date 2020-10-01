@@ -1,25 +1,31 @@
 // Dependencies
 // =============================================================
-var express = require("express");
-var path = require("path");
+const express = require("express");
+const fs = require("fs");
+const path = require("path");
 
 // Sets up the Express App
 // =============================================================
-var app = express();
-var PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-    console.log(`App is running on http://localhost:${PORT}`);
-})
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 //Middle Wear
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.post("/api/notes", function (req, res){
+  console.log(req.body);
+});
 
+app.listen(PORT, () => {
+  console.log(`App is running on http://localhost:${PORT}`);
+});
 
+//Middle Wear
+// Sets up the Express app to handle data parsing
 
+//SETUP ROUTES
 //Get Route
 //* GET `/api/notes` - Should read the `db.json` file and return all saved notes as JSON.
 
