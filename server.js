@@ -16,6 +16,10 @@ app.use(express.json());
 
 app.post("/api/notes", function (req, res){
   console.log(req.body);
+  fs.readFile("./db.json","utf-8", (err, data) => {
+      if(err) throw err;
+      console.log(data);
+  })
 });
 
 app.listen(PORT, () => {
