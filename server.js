@@ -16,9 +16,12 @@ app.use(express.json());
 
 app.post("/api/notes", function (req, res){
   console.log(req.body);
-  fs.readFile("./db.json","utf-8", (err, data) => {
+  fs.readFile("./db.json", "utf-8", (err, data) => {
       if(err) throw err;
       console.log(data);
+      const updatedData = Json.parse(data);
+      updatedData.push(req.body);
+      console.log(updatedData);
   })
 });
 
