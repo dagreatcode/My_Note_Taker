@@ -17,7 +17,14 @@ app.use(express.json());
 app.post("/api/notes", function (req, res){
   console.log(req.body);
   fs.readFile("./db.json", "utf-8", (err, data) => {
-      if(err) throw err;
+      if(err) {
+        console.log(err);
+        return res.status(500).json({
+            error: true,
+            data: null,
+            message: "Error"
+        })
+      }
       console.log(data);
       const updatedData = Json.parse(data);
       updatedData.push(req.body);
