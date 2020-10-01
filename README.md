@@ -5,3 +5,6 @@
 3.Run the npm install express -->
 
 ## Time To Start
+
+Post Route
+Get Route
