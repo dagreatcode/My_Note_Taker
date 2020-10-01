@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/dagreatcode/My_Note_Taker/issues"
   },
-  "homepage": "https://github.com/dagreatcode/My_Note_Taker#readme"
+  "homepage": "https://github.com/dagreatcode/My_Note_Taker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
