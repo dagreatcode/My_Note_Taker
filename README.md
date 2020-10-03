@@ -32,4 +32,7 @@ This Homework was fun.
 <img src="./img/img2.png">
 
 # I wil bet better asap......
-
+### GitHub Link
+https://github.com/dagreatcode/My_Note_Taker.git
+### Site
+https://dagreatcode.github.io/My_Note_Taker/
