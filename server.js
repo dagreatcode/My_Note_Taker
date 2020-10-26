@@ -14,6 +14,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "view.html"));
+});
+
 app.post("/api/notes", function (req, res){
   console.log(req.body);
   fs.readFile("./db.json", "utf-8", (err, data) => {
@@ -38,6 +42,14 @@ app.post("/api/notes", function (req, res){
         })
       })
   })
+});
+
+app.get("/notes", function(req, res) {
+  res.sendFile(path.join(__dirname, "./public/notes.html"));
+});
+
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 app.listen(PORT, () => {
