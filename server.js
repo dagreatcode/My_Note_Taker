@@ -28,15 +28,17 @@ app.get("/notes", function(req, res) {
   res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
-app.get("/api/notes", function(req, res) {
-  res.json(notes);
-});
-
 //Post Route
 //* POST `/api/notes` - Should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client.
 
 app.post("/api/notes", function (req, res){
-
+  console.log("post routes")
+  fs.readFile("./db/db.json", function(err, data){
+    if (err) throw err;
+    console.log(json.parse(data));
+    const newData = json.parse(data);
+    res.send(newData);
+  });
 });
 
 //Delete
