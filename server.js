@@ -33,11 +33,7 @@ app.get("/api/notes", function (req, res){
   console.log("get routes");
   fs.readFile("./db/db.json", "utf-8", function(err, data){
     if (err) throw err;
-    console.log(data);
-    const updatedData = JSON.parse(data);
-    updatedData.push(req.body);
-    console.log(updatedData);
-    res.send(newData);
+    res.send(data);
     // data = JSON.parse(data);
     // console.log(newData);
     // res.send(newData);
@@ -49,8 +45,24 @@ app.get("/api/notes", function (req, res){
 
 app.post("/api/notes", function (req, res){
   console.log(req.body);
-  fs.readFile("db/db.json", function (err,data) {
-    
+  fs.readFile("db/db.json", function (err, data) {
+    if (err) throw err;
+    console.log(data);
+    const updatedData = JSON.parse(data);
+    updatedData.push(req.body);
+    console.log(updatedData);
+    fs.writeFile("./db.json", JSON.stringify(updatedData), (err) => {
+      if (err) throw err;
+
+
+    // dbjson = JSON.parse(data);
+    // const sheetOfPaper = req.body;
+    // sheetOfPaper.id = dbjson.length;
+    // dbjson.push(sheetOfPaper);
+    // fs.writeFile("db/db.json", dbjson, function (err, data){
+    //   if (err) throw err;
+    //   res.JSON(dbjson);
+    });
   });
 });
 
