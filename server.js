@@ -31,9 +31,9 @@ app.get("/notes", function(req, res) {
 
 app.get("/api/notes", function (req, res){
   console.log("get routes");
-  fs.readFile("./db/db.json", "utf-8", function(err, data){
+  fs.readFile("./public/db/db.json", "utf-8", function(err, data){
     if (err) throw err;
-    res.send(data);
+    res.json(JSON.parse(data));
     // data = JSON.parse(data);
     // console.log(newData);
     // res.send(newData);
@@ -45,7 +45,7 @@ app.get("/api/notes", function (req, res){
 
 app.post("/api/notes", function (req, res){
   console.log(req.body);
-  fs.readFile("./db/db.json", function (err, data) {
+  fs.readFile("./public/db/db.json", "utf-8", function (err, data) {
     if (err) {
       console.log(err);
       return res.status(500).json({
@@ -54,11 +54,10 @@ app.post("/api/notes", function (req, res){
         message: "Unable to retrieve notes"
       });
     };
-    console.log(data);
-    const newNote = JSON.parse(data);
-    newNote.push(req.body);
-    console.log(newNote);
-    fs.writeFile("./db/db.json", JSON.stringify(newNote), (err) => {
+    const sheetP = JSON.parse(data);
+    sheetP.push(req.body);
+    console.log(sheetP);
+    fs.writeFile("./public/db/db.json", JSON.stringify(sheetP), "utf-8", (err) => {
       if (err) {
         console.log(err);
         return res.status(500).json({
@@ -67,11 +66,7 @@ app.post("/api/notes", function (req, res){
           message: "Unable to save notes"
         });
       };
-      res.json({
-        error: false,
-        data: null,
-        message: "Successfully added new Note"
-      });
+      res.json(sheetP);
 
 
     // dbjson = JSON.parse(data);
@@ -90,7 +85,7 @@ app.post("/api/notes", function (req, res){
 
 app.delete("/api/notes", function (req, res){
   console.log("delete routes");
-  fs.readFile("db/db.json", function (err,data) {
+  fs.readFile("./public/db/db.json", function (err,data) {
 
   });
 });
