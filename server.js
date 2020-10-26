@@ -3,6 +3,7 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+const notes =  require("./db/db.json");
 
 // Sets up the Express App
 // =============================================================
@@ -13,9 +14,10 @@ const PORT = process.env.PORT || 3000;
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static('public'));
 
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "view.html"));
+app.get("/api/notes", function(req, res) {
+  res.json(notes);
 });
 
 app.post("/api/notes", function (req, res){
