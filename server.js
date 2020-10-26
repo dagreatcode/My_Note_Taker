@@ -34,9 +34,10 @@ app.get("/api/notes", function (req, res){
   fs.readFile("./db/db.json", "utf-8", function(err, data){
     if (err) throw err;
     console.log(data);
-    const updatedData = data;
+    const updatedData = JSON.parse(data);
     updatedData.push(req.body);
     console.log(updatedData);
+    res.send(newData);
     // data = JSON.parse(data);
     // console.log(newData);
     // res.send(newData);
