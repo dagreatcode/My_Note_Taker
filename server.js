@@ -30,7 +30,7 @@ app.get("/notes", function(req, res) {
 //* GET `/api/notes` - Should read the `db.json` file and return all saved notes as JSON.
 
 app.get("/api/notes", function (req, res){
-  console.log("get routes");
+  res.json(sheetP);
   fs.readFile("./public/db/db.json", "utf-8", function(err, data){
     if (err) throw err;
     res.json(JSON.parse(data));
