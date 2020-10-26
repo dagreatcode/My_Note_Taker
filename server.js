@@ -3,7 +3,7 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-const notes =  require("./db/db.json");
+const db =  require("./db/db.json");
 
 // Sets up the Express App
 // =============================================================
@@ -17,8 +17,6 @@ app.use(express.json());
 app.use(express.static('public'));
 
 //SETUP ROUTES
-//Get Route
-//* GET `/api/notes` - Should read the `db.json` file and return all saved notes as JSON.
 
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./public/index.html"));
@@ -28,10 +26,10 @@ app.get("/notes", function(req, res) {
   res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
-//Post Route
-//* POST `/api/notes` - Should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client.
+//Get Route
+//* GET `/api/notes` - Should read the `db.json` file and return all saved notes as JSON.
 
-app.post("/api/notes", function (req, res){
+app.get("/api/notes", function (req, res){
   console.log("post routes")
   fs.readFile("./db/db.json", function(err, data){
     if (err) throw err;
@@ -39,6 +37,13 @@ app.post("/api/notes", function (req, res){
     const newData = json.parse(data);
     res.send(newData);
   });
+});
+
+//Post Route
+//* POST `/api/notes` - Should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client.
+
+app.post("/api/notes", function (req, res){
+  
 });
 
 //Delete
