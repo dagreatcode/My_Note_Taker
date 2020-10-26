@@ -31,11 +31,15 @@ app.get("/notes", function(req, res) {
 
 app.get("/api/notes", function (req, res){
   console.log("get routes");
-  fs.readFile("./db/db.json", function(err, data){
+  fs.readFile("./db/db.json", "utf-8", function(err, data){
     if (err) throw err;
-    console.log(json.parse(data));
-    const newData = json.parse(data);
-    res.send(newData);
+    console.log(data);
+    const updatedData = data;
+    updatedData.push(req.body);
+    console.log(updatedData);
+    // data = JSON.parse(data);
+    // console.log(newData);
+    // res.send(newData);
   });
 });
 
@@ -43,7 +47,7 @@ app.get("/api/notes", function (req, res){
 //* POST `/api/notes` - Should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client.
 
 app.post("/api/notes", function (req, res){
-  console.log("post routes");
+  console.log(req.body);
   fs.readFile("db/db.json", function (err,data) {
     
   });
